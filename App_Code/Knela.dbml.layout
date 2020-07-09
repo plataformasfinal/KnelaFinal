@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.125" name="Knela">
+  <DataContextMoniker Name="/KnelaDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6a29d844-3494-401f-bd57-d405c5d80fc6" absoluteBounds="0.75, 4.25, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/KnelaDataContext/TUsuario" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9967b99f-729d-4030-8096-a622801cc23f" absoluteBounds="0.765, 4.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c4004bf1-d165-497d-9b2a-bb940adab308" absoluteBounds="3.5, 6.875, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/KnelaDataContext/TBoleta" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28301986-4bf1-4280-8f86-fcee3e414cf7" absoluteBounds="3.515, 7.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="85abea46-3141-4dc2-9d38-e3b7785ad75e" absoluteBounds="3.5, 3.875, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/KnelaDataContext/TCliente" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c764b0fb-c995-442f-9ac3-10aa7ea65bda" absoluteBounds="3.515, 4.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3998ffe6-ab27-48ff-8757-f628d08da23f" absoluteBounds="3.5, 1, 2, 1.7708968098958329">
+      <DataClassMoniker Name="/KnelaDataContext/TDetallePedido" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4dbaacd5-b76d-4432-a997-ef2878fe0f3d" absoluteBounds="3.515, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a8646d55-baa2-40ff-873a-b7642964b0de" absoluteBounds="0.75, 7.25, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/KnelaDataContext/TDetalleVenta" />
+      <nestedChildShapes>
+        <elementListCompartment Id="115801dd-c075-4b4c-9d1e-45b09e6b8384" absoluteBounds="0.765, 7.71, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2b1bef75-cf0a-4970-b2b1-ee0130b35d6b" absoluteBounds="0.75, 1.125, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/KnelaDataContext/TInsumo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dbbb073b-aa14-4848-8dce-e9b73e1ffe72" absoluteBounds="0.765, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a1d2aa25-6cd4-4a4e-8f5c-fe2f671b7c05" absoluteBounds="6.25, 0.875, 2, 1.9631982421875003">
+      <DataClassMoniker Name="/KnelaDataContext/TPedido" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ccf3fd41-eb1c-4ce1-a22c-ade668a84c4b" absoluteBounds="6.265, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 4.84699625651042); (3.5 : 4.84699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KnelaDataContext/TUsuario/TUsuario_TCliente" />
+      <nodes>
+        <classShapeMoniker Id="6a29d844-3494-401f-bd57-d405c5d80fc6" />
+        <classShapeMoniker Id="85abea46-3141-4dc2-9d38-e3b7785ad75e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.94314697265625); (3.5 : 7.94314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KnelaDataContext/TDetalleVenta/TDetalleVenta_TBoleta" />
+      <nodes>
+        <classShapeMoniker Id="a8646d55-baa2-40ff-873a-b7642964b0de" />
+        <classShapeMoniker Id="c4004bf1-d165-497d-9b2a-bb940adab308" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KnelaDataContext/TInsumo/TInsumo_TDetallePedido" />
+      <nodes>
+        <classShapeMoniker Id="2b1bef75-cf0a-4970-b2b1-ee0130b35d6b" />
+        <classShapeMoniker Id="3998ffe6-ab27-48ff-8757-f628d08da23f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 4.95274983723958); (7.25 : 4.95274983723958); (7.25 : 2.8381982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KnelaDataContext/TCliente/TCliente_TPedido" />
+      <nodes>
+        <classShapeMoniker Id="85abea46-3141-4dc2-9d38-e3b7785ad75e" />
+        <classShapeMoniker Id="a1d2aa25-6cd4-4a4e-8f5c-fe2f671b7c05" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 1.88544840494792); (6.25 : 1.88544840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/KnelaDataContext/TDetallePedido/TDetallePedido_TPedido" />
+      <nodes>
+        <classShapeMoniker Id="3998ffe6-ab27-48ff-8757-f628d08da23f" />
+        <classShapeMoniker Id="a1d2aa25-6cd4-4a4e-8f5c-fe2f671b7c05" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

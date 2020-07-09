@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BDKnela" Class="KnelaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=USER;Initial Catalog=BDKnela;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BDKnelaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TUsuario" Member="TUsuario">
+    <Type Name="TUsuario">
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Contrasena" Type="System.Data.Linq.Binary" DbType="VarBinary(200)" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="TUsuario_TCliente" Member="TCliente" ThisKey="Usuario" OtherKey="Usuario" Type="TCliente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBoleta" Member="TBoleta">
+    <Type Name="TBoleta">
+      <Column Name="IdBoleta" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdDetalleVenta" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="DsctoPromociones" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TipoDePago" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MontoTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fechaHora" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="TDetalleVenta_TBoleta" Member="TDetalleVenta" ThisKey="IdDetalleVenta" OtherKey="IdDetalleVenta" Type="TDetalleVenta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCliente" Member="TCliente">
+    <Type Name="TCliente">
+      <Column Name="IdCliente" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ApellidoPaternoCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ApellidoMaternoCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NombresCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Dni" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TCliente_TPedido" Member="TPedido" ThisKey="IdCliente" OtherKey="IdCliente" Type="TPedido" />
+      <Association Name="TUsuario_TCliente" Member="TUsuario" ThisKey="Usuario" OtherKey="Usuario" Type="TUsuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TDetallePedido" Member="TDetallePedido">
+    <Type Name="TDetallePedido">
+      <Column Name="IdDetallePedido" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdInsumo" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CstUnitario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CstTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TDetallePedido_TPedido" Member="TPedido" ThisKey="IdDetallePedido" OtherKey="IdDetallePedido" Type="TPedido" />
+      <Association Name="TInsumo_TDetallePedido" Member="TInsumo" ThisKey="IdInsumo" OtherKey="IdInsumo" Type="TInsumo" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TDetalleVenta" Member="TDetalleVenta">
+    <Type Name="TDetalleVenta">
+      <Column Name="IdDetalleVenta" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Especificaciones" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="TDetalleVenta_TBoleta" Member="TBoleta" ThisKey="IdDetalleVenta" OtherKey="IdDetalleVenta" Type="TBoleta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TInsumo" Member="TInsumo">
+    <Type Name="TInsumo">
+      <Column Name="IdInsumo" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TipoDePostre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreInsumo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DescripcionInsumo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="TInsumo_TDetallePedido" Member="TDetallePedido" ThisKey="IdInsumo" OtherKey="IdInsumo" Type="TDetallePedido" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TPedido" Member="TPedido">
+    <Type Name="TPedido">
+      <Column Name="IdPedido" Type="System.String" DbType="Char(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fechaHora" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NroOrdenPedido" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DescripcionPedido" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IdCliente" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="IdDetallePedido" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Association Name="TCliente_TPedido" Member="TCliente" ThisKey="IdCliente" OtherKey="IdCliente" Type="TCliente" IsForeignKey="true" />
+      <Association Name="TDetallePedido_TPedido" Member="TDetallePedido" ThisKey="IdDetallePedido" OtherKey="IdDetallePedido" Type="TDetallePedido" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.spAgregarClienteE" Method="spAgregarClienteE">
+    <Parameter Name="IdCliente" Parameter="idCliente" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="ApellidoPaternoCliente" Parameter="apellidoPaternoCliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ApellidoMaternoCliente" Parameter="apellidoMaternoCliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NombresCliente" Parameter="nombresCliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Dni" Parameter="dni" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="spAgregarClienteEResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spDatosInsumo" Method="spDatosInsumo">
+    <Parameter Name="NombreInsumo" Parameter="nombreInsumo" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spDatosInsumoResult">
+      <Column Name="IdInsumo" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spListarDetallePedidos" Method="spListarDetallePedidos">
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="spListarDetallePedidosResult">
+      <Column Name="IdDetallePedido" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="IdInsumo" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CstUnitario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CstTotal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spAgregarInsumo" Method="spAgregarInsumo">
+    <Parameter Name="IdInsumo" Parameter="idInsumo" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="TipoDePostre" Parameter="tipoDePostre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NombreInsumo" Parameter="nombreInsumo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DescripcionInsumo" Parameter="descripcionInsumo" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spAgregarInsumoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(27) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spElimiarInsumo" Method="spElimiarInsumo">
+    <Parameter Name="IdInsumo" Parameter="idInsumo" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="spElimiarInsumoResult">
+      <Column Name="codError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spActualizarInsumo" Method="spActualizarInsumo">
+    <Parameter Name="IdInsumo" Parameter="idInsumo" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="TipoDePostre" Parameter="tipoDePostre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NombreInsumo" Parameter="nombreInsumo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="DescripcionInsumo" Parameter="descripcionInsumo" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spActualizarInsumoResult">
+      <Column Name="codError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(31) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spListarDetallePedidos" Method="spListarDetallePedidos1">
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="spListarDetallePedidosResult1">
+      <Column Name="IdDetallePedido" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="IdInsumo" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="CostoUnitario" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CstTotal" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spAgregarDetallePedido" Method="spAgregarDetallePedido">
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="IdInsumo" Parameter="idInsumo" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="IdDetalleVenta" Parameter="idDetalleVenta" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="CostoUnitario" Parameter="costoUnitario" Type="System.Double" DbType="Float" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="CstTotal" Parameter="cstTotal" Type="System.Double" DbType="Float" />
+    <ElementType Name="spAgregarDetallePedidoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(53) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spLoginUsuarioE" Method="spLoginUsuarioE">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spLoginUsuarioEResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spActualizarContrasena1" Method="spActualizarContrasena1">
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ContrasenaActualizada" Parameter="contrasenaActualizada" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spActualizarContrasena1Result">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spMonto" Method="spMonto">
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="spMontoResult">
+      <Column Name="CstTotal" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spAgregarPedido1" Method="spAgregarPedido1">
+    <Parameter Name="IdPedido" Parameter="idPedido" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="IdBoleta" Parameter="idBoleta" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="fechaHora" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DescripcionPedido" Parameter="descripcionPedido" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="IdCliente" Parameter="idCliente" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="IdDetalleVenta" Parameter="idDetalleVenta" Type="System.String" DbType="Char(4)" />
+    <Parameter Name="Descuento" Parameter="descuento" Type="System.Double" DbType="Float" />
+    <Parameter Name="MontoTotal" Parameter="montoTotal" Type="System.Double" DbType="Float" />
+    <ElementType Name="spAgregarPedido1Result">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spVerBoleta" Method="spVerBoleta">
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="spVerBoletaResult">
+      <Column Name="IdBoleta" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="FechaHora" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NombresCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ApellidoPaternoCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ApellidoMaternoCliente" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NombreInsumo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spVerBoleta2" Method="spVerBoleta2">
+    <Parameter Name="IdDetallePedido" Parameter="idDetallePedido" Type="System.String" DbType="Char(4)" />
+    <ElementType Name="spVerBoleta2Result">
+      <Column Name="CostoUnitario" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Cantidad" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Descuento" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MontoTotal" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.uspListarInsumo" Method="uspListarInsumo">
+    <ElementType Name="uspListarInsumoResult">
+      <Column Name="IdInsumo" Type="System.String" DbType="Char(4) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoDePostre" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NombreInsumo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DescripcionInsumo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
